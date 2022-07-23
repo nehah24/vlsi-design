@@ -1,0 +1,26 @@
+*inverter characteristics
+
+.include ./t14y_tsmc_025_level3.txt
+
+mos1 out in vs 0 cmosn l = 200n w = 2000n
+mos2 out in vd vd cmosp l = 200n w = 500n
+
+v_d vd 0 5
+v_o vs 0 0
+
+v_in in 0 pulse(0 5 0 0.1n 0.1n 50n 100n)
+cl out 0 1p
+
+.control
+tran 0.1n 200n
+run
+setplot tran1
+plot -v_d#branch
+
+plot in out 
+dc v_in 0 5 0.1
+run
+setplot dc1
+plot -v_d#branch
+plot in out
+.endc

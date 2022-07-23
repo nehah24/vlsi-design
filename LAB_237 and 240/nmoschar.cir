@@ -1,0 +1,22 @@
+* title - nmos characteristics
+
+.include ./t14y_tsmc_025_level3.txt
+
+mos1 vd vg vs vb cmosn l=5u  w=10u
+
+v_d vd vs 5
+v_g vg vs 6
+
+
+.control
+dc v_g 0 5 0.1 v_d 0 5 1 
+run
+setplot dc1
+plot -v_d#branch
+
+dc v_d 0 5 0.1 v_g 0 5 1 
+run
+setplot dc2
+plot -v_d#branch
+.endc
+
